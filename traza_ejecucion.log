@@ -1,0 +1,28 @@
+======================================================================
+[thread_id=demo-102]
+Usuario: ¿Cuántos pedidos tuvo el cliente 102, cuál fue el total y qué productos incluía el último pedido?
+  -> Acción: buscar_pedidos(cliente_id=102)
+  <- Observación (buscar_pedidos): {"cliente_id": 102, "cantidad_pedidos": 3, "total_gastado": 14500, "pedidos": [{"pedido_id": 5010, "fecha": "2026-07-12", "total": 4500, "estado": "entregado"}, {"pedido_id": 5018, "fecha": "2026-08-20", "total": 6000, "estado": "entregado"}, {"pedido_id": 5027, "fecha": "2026-09-29", "total": 4000, "estado": "en camino"}]}
+  -> Acción: detalle_pedido(pedido_id=5027)
+  <- Observación (detalle_pedido): {"pedido_id": 5027, "items": [{"producto": "Webcam HD", "cantidad": 2, "precio": 2000}]}
+Respuesta: El cliente 102 tuvo 3 pedidos en total, gastando $14.500. El último pedido (pedido ID 5027) incluye 2 unidades de "Webcam HD" a $2.000 cada una.
+(herramientas invocadas en este turno: 2)
+======================================================================
+[thread_id=demo-102]
+Usuario: ¿y el anterior a ese?
+  -> Acción: detalle_pedido(pedido_id=5018)
+  <- Observación (detalle_pedido): {"pedido_id": 5018, "items": [{"producto": "Monitor 24 pulgadas", "cantidad": 1, "precio": 5000}, {"producto": "Cable HDMI", "cantidad": 1, "precio": 1000}]}
+Respuesta: El pedido anterior al último (pedido ID 5018) incluye 1 unidad de "Monitor 24 pulgadas" a $5.000 y 1 unidad de "Cable HDMI" a $1.000.
+(herramientas invocadas en este turno: 1)
+======================================================================
+[thread_id=demo-999]
+Usuario: ¿Cuántos pedidos tuvo el cliente 999?
+  -> Acción: buscar_pedidos(cliente_id=999)
+  <- Observación (buscar_pedidos): {"error": "No existe el cliente 999.", "clientes_validos": [101, 102, 103]}
+Respuesta: El cliente 999 no existe. Los clientes válidos son: 101, 102 y 103. Si necesitas información sobre alguno de ellos, házmelo saber.
+(herramientas invocadas en este turno: 1)
+======================================================================
+[thread_id=demo-nuevo]
+Usuario: ¿y el último?
+Respuesta: Necesito que me proporciones el número de cliente para poder buscar el último pedido.
+(herramientas invocadas en este turno: 0)
